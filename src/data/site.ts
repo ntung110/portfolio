@@ -23,8 +23,7 @@ export const siteContent: SiteContent = {
   name: "Tung Nguyen",
   headline: "Machine Learning Engineer",
   bio: [
-    "I am a Machine Learning Engineer with a passion for building scalable and efficient machine learning models.",
-    "I enjoy turning ideas into simple products that are reliable, accessible, and easy to evolve.",
+    "I am a Machine Learning Engineer with a passion for building scalable and efficient machine learning models."
   ],
   location: "Toronto, Canada",
   resumeHref: "/resume.pdf",
