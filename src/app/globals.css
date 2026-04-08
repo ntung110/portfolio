@@ -19,6 +19,15 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+#projects,
+#top {
+  scroll-margin-top: 5rem;
+}
+
 a {
   color: inherit;
 }

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AucraEdge } from "@aucra/next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -42,6 +43,7 @@ export default function RootLayout({
     >
       <body className="min-h-full bg-[var(--background)] text-[var(--foreground)] font-sans">
         {children}
+        <AucraEdge publisherKey = {process.env.AUCRA_KEY!}/>
       </body>
     </html>
   );

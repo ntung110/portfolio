@@ -6,7 +6,7 @@ import { siteContent } from "@/data/site";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[var(--background)] px-6 py-12 sm:px-10 sm:py-16">
+    <div id="top" className="min-h-screen bg-[var(--background)] px-6 py-12 sm:px-10 sm:py-16">
       <main className="mx-auto flex w-full max-w-4xl flex-col gap-12">
         <HeroAbout
           name={siteContent.name}
@@ -14,8 +14,10 @@ export default function Home() {
           bio={siteContent.bio}
           location={siteContent.location}
         />
-        <Projects projects={siteContent.projects} />
-        <ResumeLink resumeHref={siteContent.resumeHref} />
+        <div id="projects">
+          <Projects projects={siteContent.projects} />
+        </div>
+        <ResumeLink />
         <Footer name={siteContent.name} socialLinks={siteContent.socialLinks} />
       </main>
     </div>
