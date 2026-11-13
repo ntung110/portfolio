@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order || a.id.localeCompare(b.id),
+);
+---
+
+<SiteLayout title="Projects" active="projects" listing>
+  <h1 class="section-title">Projects</h1>
+  <div class="entry-list">
+    {projects.map(({ id, data: project }) => (
+      <a class="project-card ruled-row" href={`/projects/${id}`}>
+        <p class="small-text">{project.label}</p>
+        <div class="title-and-year">
+          <h2>{project.title}</h2>
+
+        </div>
+        <p>{project.description}</p>
+      </a>
+    ))}
+  </div>
+</SiteLayout>
