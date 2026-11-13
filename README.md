@@ -30,7 +30,7 @@ Astro is constrained to the patched 7.3 release series to retain compatibility w
 - `src/content/projects/*.md`: project metadata and detail-page content.
 - `src/content/writings/*.md`: writing metadata and article content.
 - `src/content.config.ts`: collection schemas that validate Markdown frontmatter.
-- `src/data/site.ts`: site-wide description, personal links, and résumé URL.
+- `src/data/site.ts`: site-wide description and personal links.
 - `src/styles/global.css`: shared design tokens, typography, spacing, and responsive layout.
 - `src/layouts/SiteLayout.astro`: page metadata, navigation, and footer.
 - `src/layouts/ArticleLayout.astro`: project and writing detail-page layout.
@@ -40,9 +40,6 @@ Astro is constrained to the patched 7.3 release series to retain compatibility w
 
 The experience notes, projects, and writings intentionally retain the mockup's placeholder content. GitHub, LinkedIn, and Contact use the existing portfolio's real destinations. Framer branding and runtime scripts are not included.
 
-### Add your résumé
-
-Place your PDF at `public/resume.pdf` and change `resumeHref` in `src/data/site.ts` from `null` to `"/resume.pdf"`. Until then, the Résumé label is a non-interactive placeholder, not a broken download link.
 
 ### Edit About
 

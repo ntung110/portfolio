@@ -80,8 +80,7 @@ h1 { font-size: 30px; }
   max-width: 100%;
   margin-top: auto;
   padding-top: 28px;
-  /* Inset rules match Framer's borders without increasing the box height. */
-  box-shadow: inset 0 1px var(--border);
+
 }
 .small-text {
   color: var(--subtle);
@@ -126,11 +125,12 @@ h1 { font-size: 30px; }
 .experience { display: flex; flex-direction: column; gap: 24px; width: 100%; }
 .experience-item { display: flex; flex-direction: column; gap: 4px; }
 .personal-links { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; }
-.personal-link { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.personal-link { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
 .personal-link svg { flex: none; }
 
 .main-content.listing-page { min-height: 480px; gap: 64px; padding-bottom: 64px; }
-.section-title { font-size: 15px; }
+.section-title { font-size: 16px; }
+.title-and-year h2, .writing-title { font-size: 16px; }
 .entry-list { display: flex; flex-direction: column; width: 100%; }
 .ruled-row { position: relative; box-shadow: inset 0 -1px var(--border); }
 .project-card { display: flex; flex-direction: column; gap: 8px; padding: 24px 0; }
@@ -138,7 +138,7 @@ h1 { font-size: 30px; }
 .title-and-year h2, .writing-title { flex: 1; min-width: 0; }
 .title-and-year .small-text, .writing-row time { flex: none; white-space: nowrap; }
 .writing-row { display: flex; align-items: center; gap: 24px; padding: 20px 0; }
-.writing-title { color: var(--subtle); }
+.writing-title { color: var(--muted); }
 .project-card:hover, .writing-row:hover { text-decoration: none; }
 .project-card:hover h2, .writing-row:hover .writing-title { color: var(--text); text-decoration: underline; }
 

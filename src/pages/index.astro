@@ -41,9 +41,8 @@ const { name, headline, portrait, experience } = about.data;
   )}
 
   <div class="personal-links" aria-label="Personal links">
-    <ExternalLink href={siteContent.socialLinks.github} label="GitHub" />
-    <ExternalLink href={siteContent.socialLinks.linkedin} label="LinkedIn" />
-    <ExternalLink href={siteContent.resumeHref} label="Résumé" />
-    <ExternalLink href={siteContent.socialLinks.email} label="Contact" />
+    <ExternalLink href={siteContent.socialLinks.github} label="GitHub" icon="github" />
+    <ExternalLink href={siteContent.socialLinks.linkedin} label="LinkedIn" icon="linkedin" />
+    <ExternalLink href={siteContent.socialLinks.email} label="Contact" icon="email" />
   </div>
 </SiteLayout>

@@ -2,6 +2,13 @@
 import { getCollection } from "astro:content";
 import SiteLayout from "../../layouts/SiteLayout.astro";
 
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
 const writings = (await getCollection("writings")).sort(
   (a, b) => b.data.date.localeCompare(a.data.date) || a.id.localeCompare(b.id),
 );
@@ -13,7 +20,9 @@ const writings = (await getCollection("writings")).sort(
     {writings.map(({ id, data: writing }) => (
       <a class="writing-row ruled-row" href={`/writings/${id}`}>
         <p class="writing-title">{writing.title}</p>
-        <time class="small-text" datetime={writing.date}>{writing.date.slice(0, 4)}</time>
+        <time class="small-text" datetime={writing.date}>
+          {dateFormatter.format(new Date(`${writing.date}T00:00:00Z`))}
+        </time>
       </a>
     ))}
   </div>

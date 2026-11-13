@@ -15,4 +15,3 @@ portrait:
 #     description: "A sentence about what you built, learned, or helped make better."
 ---
 
-Hi! I am a  machine learning engineer at Faire. I’m interested in building thoughtful software and making intelligent systems useful in everyday life. Here, I share the projects I’m working on and the things I’m learning along the way.
