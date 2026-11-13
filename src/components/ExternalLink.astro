@@ -1,0 +1,24 @@
+---
+interface Props {
+  href?: string | null;
+  label: string;
+}
+const { href, label } = Astro.props;
+const external = href?.startsWith("https://");
+---
+
+{href ? (
+  <a class="personal-link small-text" href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}>
+    {label}
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 7h10v10M7 17 17 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </a>
+) : (
+  <span class="personal-link small-text" aria-disabled="true" title="Résumé coming soon">
+    {label}
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M7 7h10v10M7 17 17 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </span>
+)}

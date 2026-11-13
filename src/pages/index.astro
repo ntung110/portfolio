@@ -1,0 +1,49 @@
+---
+import { getEntry, render } from "astro:content";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import ExternalLink from "../components/ExternalLink.astro";
+import { siteContent } from "../data/site";
+
+const about = await getEntry("pages", "about");
+if (!about) throw new Error("Missing About content: add src/content/about.md");
+const { Content } = await render(about);
+const { name, headline, portrait, experience } = about.data;
+---
+
+<SiteLayout active="about">
+  <section class="introduction" aria-labelledby="name">
+    <img
+      class="portrait"
+      src={portrait.src}
+      alt={portrait.alt}
+      width={portrait.width}
+      height={portrait.height}
+      fetchpriority="high"
+    />
+    <div class="name-and-role">
+      <h1 id="name" class="name">{name}</h1>
+      <p class="role">{headline}</p>
+    </div>
+    <div class="bio prose"><Content /></div>
+  </section>
+
+  {experience.length > 0 && (
+    <section class="experience" aria-labelledby="experience-heading">
+      <h2 id="experience-heading">Experience</h2>
+      {experience.map(({ company, role, description }) => (
+        <div class="experience-item">
+          <h3>{company}</h3>
+          <p class="small-text">{role}</p>
+          <p>{description}</p>
+        </div>
+      ))}
+    </section>
+  )}
+
+  <div class="personal-links" aria-label="Personal links">
+    <ExternalLink href={siteContent.socialLinks.github} label="GitHub" />
+    <ExternalLink href={siteContent.socialLinks.linkedin} label="LinkedIn" />
+    <ExternalLink href={siteContent.resumeHref} label="Résumé" />
+    <ExternalLink href={siteContent.socialLinks.email} label="Contact" />
+  </div>
+</SiteLayout>

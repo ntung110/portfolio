@@ -1,0 +1,132 @@
+---
+import SiteLayout from "./SiteLayout.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  entry: CollectionEntry<"projects"> | CollectionEntry<"writings">;
+}
+
+const { entry } = Astro.props;
+const active = entry.collection;
+const { title, description, readingTime, image } = entry.data;
+const date = entry.collection === "writings" ? entry.data.date : undefined;
+const displayDate = date
+  ? new Intl.DateTimeFormat("en-US", {
+      month: "short", day: "numeric", year: "numeric", timeZone: "UTC",
+    }).format(new Date(`${date}T00:00:00Z`))
+  : undefined;
+---
+
+<SiteLayout title={title} description={description} active={active}>
+  <article class="detail-article" data-entry-detail aria-labelledby="entry-title">
+    <p class="back-link"><a href={`/${active}`}>Back to {active}</a></p>
+    <h1 id="entry-title">{title}</h1>
+    <div class="entry-metadata">
+      <p>
+        {entry.collection === "writings" ? <time datetime={date}>{displayDate}</time> : entry.data.year}
+      </p>
+      <p>{readingTime}</p>
+    </div>
+    <img
+      class="entry-cover"
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+    />
+    {entry.collection === "projects" && <p class="entry-summary">{description}</p>}
+    <div class="entry-body prose"><slot /></div>
+  </article>
+</SiteLayout>
+
+<style>
+  /* The article owns bottom spacing instead of adding it to the default main padding. */
+  :global(.main-content:has(> [data-entry-detail])) {
+    gap: 0;
+    padding-bottom: 0;
+  }
+
+  .detail-article {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: none;
+    gap: 28px;
+    width: 560px;
+    max-width: 100%;
+    padding: 0 0 80px;
+    overflow: clip;
+    letter-spacing: -0.015em;
+    overflow-wrap: break-word;
+  }
+
+  .detail-article h1 {
+    width: 100%;
+    font-size: 30px;
+    line-height: 1.4;
+    font-weight: 400;
+    font-variation-settings: "wght" 500;
+    color: #202020;
+  }
+
+  .back-link,
+  .entry-metadata p {
+    font-size: 13px;
+    line-height: 1.4;
+    font-weight: 400;
+    font-variation-settings: "wght" 400;
+    color: #929292;
+    white-space: pre;
+  }
+
+  .back-link a {
+    color: #626262;
+    text-decoration: none;
+  }
+
+  .back-link a:hover {
+    color: #202020;
+    text-decoration: underline;
+  }
+
+  .entry-metadata {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .entry-cover {
+    display: block;
+    flex: none;
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .entry-summary,
+  .entry-body {
+    width: 100%;
+  }
+
+  .entry-summary,
+  .entry-body :global(p) {
+    font-size: 16px;
+    line-height: 1.65;
+    font-weight: 400;
+    font-variation-settings: "wght" 400;
+    color: #626262;
+  }
+
+  .entry-body :global(h2) {
+    font-size: 21px;
+    line-height: 1.4;
+    font-weight: 400;
+    font-variation-settings: "wght" 500;
+    color: #202020;
+  }
+
+  .entry-body > :global(h2:first-child) {
+    margin-top: 20px;
+  }
+</style>

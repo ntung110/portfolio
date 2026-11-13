@@ -1,0 +1,20 @@
+---
+import { getCollection } from "astro:content";
+import SiteLayout from "../../layouts/SiteLayout.astro";
+
+const writings = (await getCollection("writings")).sort(
+  (a, b) => b.data.date.localeCompare(a.data.date) || a.id.localeCompare(b.id),
+);
+---
+
+<SiteLayout title="Writings" active="writings" listing>
+  <h1 class="section-title">Writings</h1>
+  <div class="entry-list">
+    {writings.map(({ id, data: writing }) => (
+      <a class="writing-row ruled-row" href={`/writings/${id}`}>
+        <p class="writing-title">{writing.title}</p>
+        <time class="small-text" datetime={writing.date}>{writing.date.slice(0, 4)}</time>
+      </a>
+    ))}
+  </div>
+</SiteLayout>

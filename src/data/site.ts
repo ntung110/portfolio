@@ -1,44 +1,10 @@
-export type Project = {
-  title: string;
-  description: string;
-  href: string;
-  technologies?: string[];
-};
-
-export type SiteContent = {
-  name: string;
-  headline: string;
-  bio: string[];
-  location: string;
-  resumeHref: string;
-  socialLinks: {
-    github?: string;
-    linkedin?: string;
-    email?: string;
-  };
-  projects: Project[];
-};
-
-export const siteContent: SiteContent = {
-  name: "Tung Nguyen",
-  headline: "Machine Learning Engineer",
-  bio: [
-    "I am a Machine Learning Engineer with a passion for building scalable and efficient machine learning models."
-  ],
-  location: "Toronto, Canada",
-  resumeHref: "/resume.pdf",
+export const siteContent = {
+  description: "Personal portfolio and notes on software, machine learning, and building useful things.",
+  // Add public/resume.pdf, then set this to "/resume.pdf".
+  resumeHref: null as string | null,
   socialLinks: {
     github: "https://github.com/ntung110",
     linkedin: "https://www.linkedin.com/in/ntung110/",
     email: "mailto:ngtung110@gmail.com",
   },
-  projects: [
-    // {
-    //   title: "Project One",
-    //   description:
-    //     "A concise description of what this project does, why it matters, and your role in it.",
-    //   href: "https://example.com/project-one",
-    //   technologies: ["Next.js", "TypeScript", "PostgreSQL"],
-    // }
-  ],
 };

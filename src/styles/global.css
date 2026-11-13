@@ -1,0 +1,159 @@
+@font-face {
+  font-family: "PP Neue Montreal";
+  src: url("/fonts/pp-neue-montreal-variable.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --background: #fff;
+  --text: #202020;
+  --muted: #626262;
+  --subtle: #929292;
+  --border: #eaeaea;
+  --placeholder: #f5f5f4;
+  font-family: "PP Neue Montreal", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: -0.015em;
+  font-feature-settings: "blwf" on, "cv03" on, "cv04" on, "cv09" on, "cv11" on;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--muted);
+  background: var(--background);
+}
+
+* { box-sizing: border-box; }
+body, h1, h2, h3, p { margin: 0; }
+a { color: inherit; text-decoration: none; }
+a:hover { color: var(--text); text-decoration: underline; }
+a:focus-visible { outline: 2px solid var(--text); outline-offset: 5px; }
+main:focus { outline: none; }
+
+h1, h2, h3, .navigation {
+  color: var(--text);
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.4;
+}
+h1 { font-size: 30px; }
+
+.site-shell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  padding: 72px 24px 48px;
+}
+
+.navigation {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 28px;
+  width: 560px;
+  max-width: 100%;
+  padding: 8px 0;
+  margin-bottom: 72px;
+}
+.navigation a { color: var(--muted); }
+.navigation a[aria-current="page"], .navigation a:hover { color: var(--text); }
+
+.main-content {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 48px;
+  width: 100%;
+  max-width: 560px;
+  padding-bottom: 56px;
+}
+.main-content > * { max-width: 100%; }
+
+.footer {
+  flex: none;
+  width: 560px;
+  max-width: 100%;
+  margin-top: auto;
+  padding-top: 28px;
+  /* Inset rules match Framer's borders without increasing the box height. */
+  box-shadow: inset 0 1px var(--border);
+}
+.small-text {
+  color: var(--subtle);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.introduction {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  width: 100%;
+}
+
+.about-shell .main-content {
+  gap: 32px;
+}
+.portrait {
+  display: block;
+  flex: none;
+  width: 280px;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+.name-and-role { display: flex; flex-direction: column; gap: 3px; }
+.name { font-size: 19px; }
+.role { color: var(--subtle); }
+.bio { text-wrap: pretty; }
+.prose > * { margin: 0; }
+.prose > * + * { margin-top: 20px; }
+.prose a { text-decoration: underline; text-underline-offset: 3px; }
+.prose img { display: block; max-width: 100%; height: auto; }
+.prose ul, .prose ol { padding-left: 1.5em; }
+.prose li + li { margin-top: 4px; }
+.prose blockquote { padding-left: 20px; border-left: 2px solid var(--border); }
+.prose pre { max-width: 100%; overflow-x: auto; padding: 16px; }
+.prose :not(pre) > code { padding: 2px 4px; background: var(--placeholder); }
+.experience { display: flex; flex-direction: column; gap: 24px; width: 100%; }
+.experience-item { display: flex; flex-direction: column; gap: 4px; }
+.personal-links { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 20px; }
+.personal-link { display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.personal-link svg { flex: none; }
+
+.main-content.listing-page { min-height: 480px; gap: 64px; padding-bottom: 64px; }
+.section-title { font-size: 15px; }
+.entry-list { display: flex; flex-direction: column; width: 100%; }
+.ruled-row { position: relative; box-shadow: inset 0 -1px var(--border); }
+.project-card { display: flex; flex-direction: column; gap: 8px; padding: 24px 0; }
+.title-and-year { display: flex; align-items: center; gap: 24px; }
+.title-and-year h2, .writing-title { flex: 1; min-width: 0; }
+.title-and-year .small-text, .writing-row time { flex: none; white-space: nowrap; }
+.writing-row { display: flex; align-items: center; gap: 24px; padding: 20px 0; }
+.writing-title { color: var(--subtle); }
+.project-card:hover, .writing-row:hover { text-decoration: none; }
+.project-card:hover h2, .writing-row:hover .writing-title { color: var(--text); text-decoration: underline; }
+
+.skip-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1;
+  padding: 8px 12px;
+  background: var(--background);
+  color: var(--text);
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+
+@media (max-width: 809.98px) {
+  .site-shell { padding: 40px 24px; }
+}
