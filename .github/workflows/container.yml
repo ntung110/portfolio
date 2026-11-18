@@ -1,0 +1,33 @@
+name: Portfolio container
+
+on: [push, pull_request, workflow_dispatch]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check and build site in container
+        run: docker build -t portfolio:ci .
+      - name: Test served homepage
+        run: |
+          docker run -d --name portfolio -p 127.0.0.1:8080:80 portfolio:ci
+          curl --fail --retry 8 --retry-connrefused --retry-delay 1 http://localhost:8080/ -o /tmp/home.html
+          test -s /tmp/home.html
+      - name: Publish tested image to GHCR
+        if: github.event_name != 'pull_request' && github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          image="ghcr.io/${GITHUB_REPOSITORY,,}"
+          echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          for tag in "$GITHUB_SHA" latest; do
+            docker tag portfolio:ci "$image:$tag"
+            docker push "$image:$tag"
+          done
