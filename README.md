@@ -122,10 +122,9 @@ A production domain is not configured. Set the `site` option in `astro.config.mj
 
 ## Container CI and publishing
 
-GitHub Actions builds the Dockerfile on pushes and pull requests. The build runs
-Astro diagnostics and generates the static site. CI then starts Nginx and checks
-that the homepage returns a nonempty response. Successful default-branch builds
-publish the tested image to GHCR with the commit SHA and `latest` tags using the
+GitHub Actions builds the Dockerfile on pushes to `main`. The build runs
+Astro diagnostics and generates the static site. Successful builds
+publish the image to GHCR with the commit SHA and `latest` tags using the
 repository's built-in GitHub token. The Node and Nginx base images come from
 Amazon ECR Public's mirror of Docker Official Images.
 
