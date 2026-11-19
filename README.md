@@ -119,3 +119,19 @@ No homelab deployment automation or server configuration is included yet. Avoid 
 
 A production domain is not configured. Set the `site` option in `astro.config.mjs` when a domain is available, then configure canonical URLs and sharing metadata as needed.
 
+
+## Container CI and publishing
+
+GitHub Actions builds the Dockerfile on pushes to `main`. The build runs
+Astro diagnostics and generates the static site. Successful builds
+publish the image to GHCR with the commit SHA and `latest` tags using the
+repository's built-in GitHub token. The Node and Nginx base images come from
+Amazon ECR Public's mirror of Docker Official Images.
+
+To serve the published image locally:
+
+```sh
+docker run --rm -p 8080:80 ghcr.io/ntung110/portfolio:latest
+```
+
+Open http://localhost:8080. Private packages require a GHCR login before pulling.
